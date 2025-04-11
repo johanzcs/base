@@ -2,14 +2,24 @@
 package Vista;
 
 import Modelo.Usuario;
+import java.util.ArrayList;
+
 public class Formulario_Registro_Cliente extends javax.swing.JFrame {
 
     public Formulario_Registro_Cliente() {
         initComponents();
+        jLabel2.setText("NOMBRE");
+Nombre_cliente = new javax.swing.JTextField();
+jLabel3.setText("APELLIDO");
+Apellido_cliente = new javax.swing.JTextField();
+jLabel4.setText("CEDULA");
+Cedula_cliente = new javax.swing.JTextField();
+
     }
 
    
     @SuppressWarnings("unchecked")
+    
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -192,51 +202,54 @@ public class Formulario_Registro_Cliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void Nombre_clienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Nombre_clienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Nombre_clienteActionPerformed
-
-    private void Apellido_clienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Apellido_clienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Apellido_clienteActionPerformed
-
     private void RegistrosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistrosMousePressed
 
         String auxNombre = Nombre_cliente.getText();
         String auxApellido = Apellido_cliente.getText();
         String auxCedula = Cedula_cliente.getText();
-        
-        System.out.println("Nombre: " + auxNombre + ", Apellido: " + auxApellido + ", Cedula: " + auxCedula);
-        
-         if (validarCampos(auxNombre, auxApellido, auxCedula)) {
-         Usuario usuario = new Usuario();
-        usuario.setNombre_Cliente(auxNombre);
-        usuario.setApellido_Cliente(auxApellido);
-        usuario.setCedula_Cliente(auxCedula);
-        JOptionPane.showMessageDialog(this, "Registro de cliente exitoso.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-        
-        
-        Formulario_Registro_Vehiculo registroVehiculo = new Formulario_Registro_Vehiculo();
-        registroVehiculo.setVisible(true);
-        this.dispose(); 
-    } else {
-        JOptionPane.showMessageDialog(this, "Error en el registro. Verifique los campos.", "Error", JOptionPane.ERROR_MESSAGE);
-    }
-}
 
-private boolean validarCampos(String nombre, String apellido, String cedula) {
-    if (!nombre.matches("[a-zA-Z]+") || !apellido.matches("[a-zA-Z]+")) {
+        System.out.println("Nombre: " + auxNombre + ", Apellido: " + auxApellido + ", Cedula: " + auxCedula);
+
+        if (validarCampos(auxNombre, auxApellido, auxCedula)) {
+            Usuario usuario = new Usuario();
+            usuario.setNombre_Cliente(auxNombre);
+            usuario.setApellido_Cliente(auxApellido);
+            usuario.setCedula_Cliente(auxCedula);
+            JOptionPane.showMessageDialog(this, "Registro de cliente exitoso.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+            Formulario_Registro_Vehiculo registroVehiculo = new Formulario_Registro_Vehiculo();
+            registroVehiculo.setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Error en el registro. Verifique los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        }
+
+       private boolean validarCampos(String nombre, String apellido, String cedula) {
+    if (!nombre.matches("[a-zA-Z]{2,}")) {
+        JOptionPane.showMessageDialog(null, "Nombre inválido. Mínimo 2 letras.");
         return false;
     }
-    
-    if (!cedula.matches("[0-9]+")) {
+    if (!apellido.matches("[a-zA-Z]{2,}")) {
+        JOptionPane.showMessageDialog(null, "Apellido inválido. Mínimo 2 letras.");
         return false;
     }
-    
+    if (!cedula.matches("\\d{5,10}")) {
+        JOptionPane.showMessageDialog(null, "Cédula inválida. Debe tener entre 5 y 10 dígitos.");
+        return false;
+    }
     return true;
 
-                                                 
+
     }//GEN-LAST:event_RegistrosMousePressed
+
+    private void Apellido_clienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Apellido_clienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Apellido_clienteActionPerformed
+
+    private void Nombre_clienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Nombre_clienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Nombre_clienteActionPerformed
 
    
     public static void main(String args[]) {

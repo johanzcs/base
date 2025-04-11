@@ -289,8 +289,17 @@ public class Formulario_Registro_Vehiculo extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this ,"por favor complete todos los campos obligatorios");
             return;
         }
-}
-
+        Coche coche = new Coche(Sereal, Modelo, numeropuertas, Marca, año, tipoCombustible, AireAcondicionado, VidriosElectricos);
+        
+        JOptionPane.showMessageDialog(this, "VEHICULO REGISTRADO CORRECTAMENTE:\n"+coche.toString());
+}   
+       catch(NumberFormatException e){
+           JOptionPane.showMessageDialog(this, "el numero de puertas debe ser un numro valido");
+       } catch (Exception ex){
+           JOptionPane.showMessageDialog(this,"error al registrar el vehiculo"+ ex.getMessage());
+       }
+       
+       
 
     }//GEN-LAST:event_botonregistroMouseClicked
 
