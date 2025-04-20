@@ -377,6 +377,9 @@
               </StringArray>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBox2ActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
@@ -442,7 +445,13 @@
               <Color blue="0" green="66" red="66" type="rgb"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="0"/>
+              <StringArray count="5">
+                <StringItem index="0" value="Autom&#xf3;vil"/>
+                <StringItem index="1" value="Camioneta "/>
+                <StringItem index="2" value="SUV"/>
+                <StringItem index="3" value="Pickup"/>
+                <StringItem index="4" value=" "/>
+              </StringArray>
             </Property>
           </Properties>
           <AuxValues>

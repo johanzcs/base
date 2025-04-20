@@ -110,6 +110,11 @@ public class Formulario_Registro_Vehiculo extends javax.swing.JFrame {
         jComboBox2.setBackground(new java.awt.Color(51, 255, 51));
         jComboBox2.setForeground(new java.awt.Color(0, 0, 0));
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chevrolet", "Toyota", "Nissan", "Ford", "Honda", "Hyundai", "Mazda", "Mercedes-Benz", "Renault", "Suzuki" }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
 
         jRadioButton1.setBackground(new java.awt.Color(0, 102, 102));
         jRadioButton1.setForeground(new java.awt.Color(0, 0, 0));
@@ -132,6 +137,7 @@ public class Formulario_Registro_Vehiculo extends javax.swing.JFrame {
         jCheckBox2.setText("VIDRIOS ELECTRICOS ");
 
         jComboBox3.setBackground(new java.awt.Color(102, 102, 0));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Automóvil", "Camioneta ", "SUV", "Pickup", " " }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -262,42 +268,44 @@ public class Formulario_Registro_Vehiculo extends javax.swing.JFrame {
     }//GEN-LAST:event_botonregistroActionPerformed
 
     private void botonregistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonregistroMouseClicked
-       try{
-           
-        String Sereal = Campo_Serial.getText().trim();
+        try {
+        String Serial = Campo_Serial.getText().trim();
         String Modelo = Campo_Modelo.getText().trim();
         String puertasStr = Campo_NumeroPuertas.getText().trim();
         int numeropuertas = Integer.parseInt(puertasStr);
-        
-        String año = (String)jComboBox1.getSelectedItem();
-        String Marca = (String)jComboBox2.getSelectedItem();
-        
-        String tipoCombustible="";
-        if (jRadioButton1.isSelected()){
+
+        String año = (String) jComboBox1.getSelectedItem();
+        String Marca = (String) jComboBox2.getSelectedItem();
+
+        String tipoCombustible = "";
+        if (jRadioButton1.isSelected()) {
             tipoCombustible = "GASOLINA";
-        }else if (jRadioButton2.isSelected()){
+        } else if (jRadioButton2.isSelected()) {
             tipoCombustible = "DIESEL";
-        }else if (jRadioButton3.isSelected()){
-            
+        } else if (jRadioButton3.isSelected()) {
+            tipoCombustible = "ELECTRICO";
         }
-        
-        
+
         boolean AireAcondicionado = jCheckBox1.isSelected();
         boolean VidriosElectricos = jCheckBox2.isSelected();
-        
-        if (Sereal.isEmpty()|| Modelo.isEmpty()||tipoCombustible.isEmpty()){
-            JOptionPane.showMessageDialog(this ,"por favor complete todos los campos obligatorios");
+
+        // Validar campos obligatorios
+        if (Serial.isEmpty() || Modelo.isEmpty() || tipoCombustible.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor complete todos los campos obligatorios.");
             return;
         }
-        Coche coche = new Coche(Sereal, Modelo, numeropuertas, Marca, año, tipoCombustible, AireAcondicionado, VidriosElectricos);
-        
-        JOptionPane.showMessageDialog(this, "VEHICULO REGISTRADO CORRECTAMENTE:\n"+coche.toString());
-}   
-       catch(NumberFormatException e){
-           JOptionPane.showMessageDialog(this, "el numero de puertas debe ser un numro valido");
-       } catch (Exception ex){
-           JOptionPane.showMessageDialog(this,"error al registrar el vehiculo"+ ex.getMessage());
-       }
+
+        // Crear objeto Coche
+        Coche coche = new Coche(Serial, Modelo, numeropuertas, Marca, año, tipoCombustible, AireAcondicionado, VidriosElectricos);
+
+        // Mostrar mensaje de confirmación
+        JOptionPane.showMessageDialog(this, "VEHÍCULO REGISTRADO CORRECTAMENTE:\n" + coche.toString());
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "El número de puertas debe ser un número válido.");
+    } catch (Exception ex) {
+        JOptionPane.showMessageDialog(this, "Error al registrar el vehículo: " + ex.getMessage());
+    }
+
        
        
 
@@ -310,6 +318,10 @@ public class Formulario_Registro_Vehiculo extends javax.swing.JFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox2ActionPerformed
 
    
 

@@ -4,7 +4,7 @@ import Modelo.Vehiculo;
 import Modelo.Usuario;
 import Vista.Formulario_Registro_Vehiculo;
 import Vista.Formulario_Registro_Cliente;
-
+import Modelo.Coche;
 import javax.swing.JTable;
 import javax.swing.DefaultListModel;
 import javax.swing.table.DefaultTableModel;
@@ -130,6 +130,31 @@ public void actualizarListaClientes(DefaultListModel<String> modeloLista) {
         }
     } catch (SQLException e) {
         JOptionPane.showMessageDialog(null, "Error al cargar lista: " + e.getMessage());
+    }
+}
+public boolean registrarVehiculo(Coche coche) {
+    ConexionBD conexion = new ConexionBD();
+    Connection conn = conexion.obtenerConexion();
+
+    String sql = "INSERT INTO vehiculos (placa, modelo, marca, anio, tipo_combustible, aire_acondicionado, vidrios_electricos, numero_puertas) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+    try {
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1, coche.getSerial_vehiculo());
+        ps.setString(2, coche.getModelo_vehiculo());
+        ps.setString(3, coche.getMarca());
+        ps.setString(4, coche.getaño());
+        ps.setString(5, coche.getTipoCombustible());
+        ps.setBoolean(6, coche.isAireAcondicionado());
+        ps.setBoolean(7, coche.isVidriosElectricos());
+        ps.setInt(8, coche.getNumeroPuertas());
+
+        ps.executeUpdate();
+        return true;
+
+    } catch (SQLException e) {
+        System.out.println("Error al guardar vehículo: " + e.getMessage());
+        return false;
     }
 }
 

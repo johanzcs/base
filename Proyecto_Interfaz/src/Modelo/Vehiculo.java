@@ -98,4 +98,13 @@ public class Vehiculo {
         System.out.println("AIRE ACONDICIONADO: " + (AireAcondicionado ? "Sí" : "No"));
         System.out.println("VIDRIOS ELÉCTRICOS: " + (VidriosElectricos ? "Sí" : "No"));
     }
+     public String toString() {
+        return "Serial: " + Serial_vehiculo +
+               "\nModelo: " + Modelo_vehiculo +
+               "\nMarca: " + Marca +
+               "\nAño: " + año +
+               "\nTipo de combustible: " + TipoCombustible +
+               "\nAire acondicionado: " + (AireAcondicionado ? "Sí" : "No") +
+               "\nVidrios eléctricos: " + (VidriosElectricos ? "Sí" : "No");
+    }
 }

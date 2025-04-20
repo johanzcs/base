@@ -49,4 +49,5 @@ public class ConexionBD {
         System.out.println("Placa: " + resultado_sentencia.getString("placa"));
     }
 }
+   
 }
