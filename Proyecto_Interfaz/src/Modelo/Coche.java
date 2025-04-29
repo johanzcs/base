@@ -1,36 +1,44 @@
 package Modelo;
 
 public class Coche extends Vehiculo {
-    private int numeroPuertas;
+
+    private int idCliente;
 
     public Coche() {
-        super(); 
-        this.numeroPuertas = 4;
+        super();
+        setNumeroPuertas(4);
+        setTipoVehiculo("Coche"); 
     }
 
-    public Coche(String Sereal, String Modelo, int numeroPuertas, String Marca, String año, String tipoCombustible, boolean AireAcondicionado, boolean VidriosElectricos) {
-        super(Sereal, Modelo, Marca, año, tipoCombustible, AireAcondicionado, VidriosElectricos);
-        this.numeroPuertas = numeroPuertas;
+    public Coche(String serial, String modelo, int numeroPuertas, int año, String marca,
+                 String tipoCombustible, boolean aireAcondicionado, boolean vidriosElectricos,
+                 String tipoVehiculo, int idCliente) {
+        super(serial, modelo, marca, año, tipoCombustible, numeroPuertas, aireAcondicionado, vidriosElectricos, tipoVehiculo);
+        this.idCliente = idCliente;
     }
 
-    public int getNumeroPuertas() {
-        return numeroPuertas;
+    public Coche(String serial, String modelo, int numeroPuertas, int año, String marca,
+                 String tipoCombustible, boolean aireAcondicionado, boolean vidriosElectricos,
+                 String tipoVehiculo) {
+        super(serial, modelo, marca, año, tipoCombustible, numeroPuertas, aireAcondicionado, vidriosElectricos, tipoVehiculo);
+        this.idCliente = -1; 
     }
 
-    public void setNumeroPuertas(int numeroPuertas) {
-        this.numeroPuertas = numeroPuertas;
+    public int getIdCliente() {
+        return idCliente;
     }
 
-    
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
+    }
+
     public void mostrarInfo() {
         super.mostrarInfo();
-        System.out.println("Número de puertas: " + numeroPuertas);
+        System.out.println("ID Cliente: " + idCliente);
     }
 
-   
     public String toString() {
-        return super.toString() + 
-               "\nNúmero de puertas: " + numeroPuertas;
+        return super.toString() +
+               "\nID Cliente: " + idCliente;
     }
 }
-

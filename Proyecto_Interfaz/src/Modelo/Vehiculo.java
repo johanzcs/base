@@ -1,110 +1,136 @@
 package Modelo;
 
 public class Vehiculo {
-    private String Serial_vehiculo;
-    private String Modelo_vehiculo;
-    private String Marca;
-    private String año;
-    private String TipoCombustible;
-    private boolean AireAcondicionado;
-    private boolean VidriosElectricos;
 
-    // Constructor vacío (el que ya tenías)
+    private String serial_vehiculo;
+    private String modelo_vehiculo;
+    private String marca;
+    private int año; 
+    private String tipoCombustible;
+    private int numeroPuertas;
+    private boolean aireAcondicionado;
+    private boolean vidriosElectricos;
+    private String tipoVehiculo;
+
     public Vehiculo() {
-        this.Serial_vehiculo = "";
-        this.Modelo_vehiculo = "";
-        this.Marca = "";
-        this.año = "";
-        this.TipoCombustible = "";
-        this.AireAcondicionado = false;
-        this.VidriosElectricos = false;
+        this.serial_vehiculo = "";
+        this.modelo_vehiculo = "";
+        this.marca = "";
+        this.año = 0;
+        this.tipoCombustible = "";
+        this.numeroPuertas = 0;
+        this.aireAcondicionado = false;
+        this.vidriosElectricos = false;
+        this.tipoVehiculo = "";
     }
 
-    // Nuevo constructor con todos los campos
-    public Vehiculo(String Sereal, String Modelo, String Marca, String año, String tipoCombustible, boolean AireAcondicionado, boolean VidriosElectricos) {
-        this.Serial_vehiculo = Sereal;
-        this.Modelo_vehiculo = Modelo;
-        this.Marca = Marca;
-        this.año = año;
-        this.TipoCombustible = tipoCombustible;
-        this.AireAcondicionado = AireAcondicionado;
-        this.VidriosElectricos = VidriosElectricos;
+    public Vehiculo(String serial, String modelo, String marca, int año, String tipoCombustible,
+                    int numeroPuertas, boolean aireAcondicionado, boolean vidriosElectricos, String tipoVehiculo) {
+        this.serial_vehiculo = serial;
+        this.modelo_vehiculo = modelo;
+        this.marca = marca;
+        this.año = año;  
+        this.tipoCombustible = tipoCombustible;
+        this.numeroPuertas = numeroPuertas;
+        this.aireAcondicionado = aireAcondicionado;
+        this.vidriosElectricos = vidriosElectricos;
+        this.tipoVehiculo = tipoVehiculo;
     }
 
-    // Getters y setters
-    public String getSerial_vehiculo() {
-        return Serial_vehiculo;
+    public String getSerial() {
+        return serial_vehiculo;
     }
 
-    public void setSerial_vehiculo(String Sereal_vehiculo) {
-        this.Serial_vehiculo = Sereal_vehiculo;
+    public void setSerial(String serial_vehiculo) {
+        this.serial_vehiculo = serial_vehiculo;
     }
 
-    public String getModelo_vehiculo() {
-        return Modelo_vehiculo;
+    public String getModelo() {
+        return modelo_vehiculo;
     }
 
-    public void setModelo_vehiculo(String Modelo_vehiculo) {
-        this.Modelo_vehiculo = Modelo_vehiculo;
+    public void setModelo(String modelo_vehiculo) {
+        this.modelo_vehiculo = modelo_vehiculo;
     }
 
     public String getMarca() {
-        return Marca;
+        return marca;
     }
 
-    public void setMarca(String Marca) {
-        this.Marca = Marca;
+    public void setMarca(String marca) {
+        this.marca = marca;
     }
 
-    public String getaño() {
-        return año;
+    public int getAño() {
+        return año;  
     }
 
-    public void setAnio(String año) {
-        this.año = año;
+    public void setAño(int año) {
+        this.año = año;  
     }
 
     public String getTipoCombustible() {
-        return TipoCombustible;
+        return tipoCombustible;
     }
 
-    public void setTipoCombustible(String TipoCombustible) {
-        this.TipoCombustible = TipoCombustible;
+    public void setTipoCombustible(String tipoCombustible) {
+        this.tipoCombustible = tipoCombustible;
+    }
+
+    public int getNumeroPuertas() {
+        return numeroPuertas;
+    }
+
+    public void setNumeroPuertas(int numeroPuertas) {
+        this.numeroPuertas = numeroPuertas;
     }
 
     public boolean isAireAcondicionado() {
-        return AireAcondicionado;
+        return aireAcondicionado;
     }
 
-    public void setAireAcondicionado(boolean AireAcondicionado) {
-        this.AireAcondicionado = AireAcondicionado;
+    public void setAireAcondicionado(boolean aireAcondicionado) {
+        this.aireAcondicionado = aireAcondicionado;
     }
 
     public boolean isVidriosElectricos() {
-        return VidriosElectricos;
+        return vidriosElectricos;
     }
 
-    public void setVidriosElectricos(boolean VidriosElectricos) {
-        this.VidriosElectricos = VidriosElectricos;
+    public void setVidriosElectricos(boolean vidriosElectricos) {
+        this.vidriosElectricos = vidriosElectricos;
     }
 
-    // Método para mostrar información
+    public String getTipoVehiculo() {
+        return tipoVehiculo;
+    }
+
+    public void setTipoVehiculo(String tipoVehiculo) {
+        this.tipoVehiculo = tipoVehiculo;
+    }
+
     public void mostrarInfo() {
-        System.out.println("SERIAL: " + Serial_vehiculo);
-        System.out.println("MODELO: " + Modelo_vehiculo);
-        System.out.println("MARCA: " + Marca);
+        System.out.println("SERIAL: " + serial_vehiculo);
+        System.out.println("MODELO: " + modelo_vehiculo);
+        System.out.println("MARCA: " + marca);
         System.out.println("AÑO: " + año);
-        System.out.println("COMBUSTIBLE: " + TipoCombustible);
-        System.out.println("AIRE ACONDICIONADO: " + (AireAcondicionado ? "Sí" : "No"));
-        System.out.println("VIDRIOS ELÉCTRICOS: " + (VidriosElectricos ? "Sí" : "No"));
+        System.out.println("COMBUSTIBLE: " + tipoCombustible);
+        System.out.println("PUERTAS: " + numeroPuertas);
+        System.out.println("AIRE ACONDICIONADO: " + (aireAcondicionado ? "Sí" : "No"));
+        System.out.println("VIDRIOS ELÉCTRICOS: " + (vidriosElectricos ? "Sí" : "No"));
+        System.out.println("TIPO DE VEHÍCULO: " + tipoVehiculo);
     }
-     public String toString() {
-        return "Serial: " + Serial_vehiculo +
-               "\nModelo: " + Modelo_vehiculo +
-               "\nMarca: " + Marca +
+
+    public String toString() {
+        return "Serial: " + serial_vehiculo +
+               "\nModelo: " + modelo_vehiculo +
+               "\nMarca: " + marca +
                "\nAño: " + año +
-               "\nTipo de combustible: " + TipoCombustible +
-               "\nAire acondicionado: " + (AireAcondicionado ? "Sí" : "No") +
-               "\nVidrios eléctricos: " + (VidriosElectricos ? "Sí" : "No");
+               "\nTipo de combustible: " + tipoCombustible +
+               "\nNúmero de puertas: " + numeroPuertas +
+               "\nAire acondicionado: " + (aireAcondicionado ? "Sí" : "No") +
+               "\nVidrios eléctricos: " + (vidriosElectricos ? "Sí" : "No") +
+               "\nTipo de vehículo: " + tipoVehiculo;
     }
 }
+

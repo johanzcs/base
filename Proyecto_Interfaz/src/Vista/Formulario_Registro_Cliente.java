@@ -1,6 +1,7 @@
 
 package Vista;
 import Modelo.Usuario;
+import java.util.List;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -10,22 +11,23 @@ import Controlador.Controlador;
 public class Formulario_Registro_Cliente extends javax.swing.JFrame {
     private javax.swing.JTable tablaClientes;
     private DefaultListModel<String> modeloListaClientes;
+    private List<String> listaCedulasEliminadas = new ArrayList<>();
+    private Controlador controladorCliente = new Controlador();
 
-    public Formulario_Registro_Cliente() {
+       public Formulario_Registro_Cliente() {
         initComponents();
         modeloListaClientes = new DefaultListModel<>();
         jList1.setModel(modeloListaClientes);
 
-        // Configurar tabla
         DefaultTableModel modeloTabla = new DefaultTableModel(
             new Object[][] {},
             new String[] {"Nombre", "Apellido", "Cédula"}
         );
         jTable1.setModel(modeloTabla);
         tablaClientes = jTable1;
-
+        
     }
- 
+
     @SuppressWarnings("unchecked")
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -45,10 +47,11 @@ public class Formulario_Registro_Cliente extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        editar = new javax.swing.JButton();
+        eliminar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
+        actualizar = new javax.swing.JButton();
 
         JOptionPane.setBackground(new java.awt.Color(153, 153, 255));
         JOptionPane.setForeground(new java.awt.Color(0, 0, 0));
@@ -109,19 +112,39 @@ public class Formulario_Registro_Cliente extends javax.swing.JFrame {
 
         jScrollPane2.setViewportView(jList1);
 
-        jButton1.setBackground(new java.awt.Color(255, 102, 102));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(153, 0, 204));
-        jButton1.setText("EDITAR");
+        editar.setBackground(new java.awt.Color(255, 102, 102));
+        editar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        editar.setForeground(new java.awt.Color(153, 0, 204));
+        editar.setText("EDITAR");
+        editar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                editarMouseClicked(evt);
+            }
+        });
 
-        jButton2.setBackground(new java.awt.Color(255, 102, 102));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(153, 0, 204));
-        jButton2.setText("ELIMINAR");
+        eliminar.setBackground(new java.awt.Color(255, 102, 102));
+        eliminar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        eliminar.setForeground(new java.awt.Color(153, 0, 204));
+        eliminar.setText("ELIMINAR");
+        eliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                eliminarMouseClicked(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(102, 102, 255));
         jLabel5.setText("    ID");
+
+        actualizar.setBackground(new java.awt.Color(255, 102, 102));
+        actualizar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        actualizar.setForeground(new java.awt.Color(153, 0, 204));
+        actualizar.setText("ACTUALIZAR");
+        actualizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                actualizarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -133,7 +156,14 @@ public class Formulario_Registro_Cliente extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(Registros, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(editar, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(actualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -147,11 +177,7 @@ public class Formulario_Registro_Cliente extends javax.swing.JFrame {
                             .addComponent(Nombre_cliente, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                             .addComponent(Apellido_cliente, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                             .addComponent(Cedula_cliente, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(180, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(49, 49, 49)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -183,18 +209,19 @@ public class Formulario_Registro_Cliente extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(51, 51, 51)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Registros, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                    .addComponent(actualizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(Registros, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(editar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18))))
         );
@@ -233,35 +260,36 @@ public class Formulario_Registro_Cliente extends javax.swing.JFrame {
         usuario.setApellido_Cliente(auxApellido);
         usuario.setCedula_Cliente(auxCedula);
 
-        // Llamar al controlador
         Controlador controlador = new Controlador();
 
         boolean exito = controlador.registrarUsuarioYActualizarVista(
             usuario,
-            tablaClientes,      // ← JTable que debes pasar
-            modeloListaClientes // ← DefaultListModel que debes tener
+            tablaClientes,      
+            modeloListaClientes 
         );
+           Object[] opciones = {"Continuar", "Volver"};
+    int eleccion = JOptionPane.showOptionDialog(
+        this,
+        "Cliente registrado correctamente. ¿Desea continuar al siguiente formulario?",
+        "Registro exitoso",
+        JOptionPane.YES_NO_OPTION,
+        JOptionPane.QUESTION_MESSAGE,
+        null,
+        opciones,
+        opciones[0]
+    );
 
-        if (exito) {
-            JOptionPane.showMessageDialog(this, "Cliente registrado correctamente.");
-            Nombre_cliente.setText("");
-            Apellido_cliente.setText("");
-            Cedula_cliente.setText("");
-
-            // Opcional: abrir formulario de vehículo
-            Formulario_Registro_Vehiculo registroVehiculo = new Formulario_Registro_Vehiculo();
+    if (eleccion == JOptionPane.YES_OPTION) {
+        Formulario_Registro_Vehiculo registroVehiculo = new Formulario_Registro_Vehiculo();
             registroVehiculo.setVisible(true);
             this.dispose();
 
-        } else {
-            JOptionPane.showMessageDialog(this, "Error al registrar cliente.");
-        }
+        } 
 
     } else {
         JOptionPane.showMessageDialog(this, "Verifique los campos ingresados.");
     }
-}
-
+    }
        private boolean validarCampos(String nombre, String apellido, String cedula) {
     if (!nombre.matches("[a-zA-Z]{2,}")) {
         JOptionPane.showMessageDialog(null, "Nombre inválido. Mínimo 2 letras.");
@@ -276,9 +304,7 @@ public class Formulario_Registro_Cliente extends javax.swing.JFrame {
     return false;
     }
     return true;
-
-
-
+    
     }//GEN-LAST:event_RegistrosMousePressed
 
     private void Apellido_clienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Apellido_clienteActionPerformed
@@ -289,7 +315,58 @@ public class Formulario_Registro_Cliente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Nombre_clienteActionPerformed
 
-   
+    private void editarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editarMouseClicked
+      int filaSeleccionada = tablaClientes.getSelectedRow();
+
+    if (filaSeleccionada >= 0) {
+        tablaClientes.editCellAt(filaSeleccionada, 1); 
+        tablaClientes.editCellAt(filaSeleccionada, 2);
+        tablaClientes.requestFocus(); 
+    } else {
+        JOptionPane.showMessageDialog(this, "Por favor selecciona un cliente para editar.");
+    }
+
+    }//GEN-LAST:event_editarMouseClicked
+
+    private void eliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eliminarMouseClicked
+            
+        int filaSeleccionada = tablaClientes.getSelectedRow();
+
+    if (filaSeleccionada >= 0) {
+        String cedula = (String) tablaClientes.getValueAt(filaSeleccionada, 0);
+        listaCedulasEliminadas.add(cedula);
+
+        DefaultTableModel modelo = (DefaultTableModel) tablaClientes.getModel();
+        modelo.removeRow(filaSeleccionada);
+
+        JOptionPane.showMessageDialog(this, "Cliente marcado para eliminación. Presiona 'Actualizar' para aplicar los cambios.");
+    } else {
+        JOptionPane.showMessageDialog(this, "Por favor selecciona un cliente para eliminar.");
+    }
+
+    }//GEN-LAST:event_eliminarMouseClicked
+
+    private void actualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_actualizarMouseClicked
+  DefaultTableModel modeloTabla = (DefaultTableModel) tablaClientes.getModel();
+
+    for (int i = 0; i < modeloTabla.getRowCount(); i++) {
+        String nombre = (String) modeloTabla.getValueAt(i, 0);
+        String apellido = (String) modeloTabla.getValueAt(i, 1);
+        String cedula = (String) modeloTabla.getValueAt(i, 2);
+
+        controladorCliente.actualizarCliente(cedula, nombre, apellido);
+    }
+
+    for (String cedula : listaCedulasEliminadas) {
+        controladorCliente.eliminarCliente(cedula);
+    }
+
+    listaCedulasEliminadas.clear();
+
+    JOptionPane.showMessageDialog(this, "Base de datos actualizada con éxito.");
+        
+    }//GEN-LAST:event_actualizarMouseClicked
+
     public static void main(String args[]) {
         
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -328,8 +405,9 @@ public class Formulario_Registro_Cliente extends javax.swing.JFrame {
     private javax.swing.JOptionPane JOptionPane;
     private javax.swing.JTextField Nombre_cliente;
     private javax.swing.JButton Registros;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton actualizar;
+    private javax.swing.JButton editar;
+    private javax.swing.JButton eliminar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

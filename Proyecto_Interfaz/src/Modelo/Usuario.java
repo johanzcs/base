@@ -1,7 +1,6 @@
 
 package Modelo;
 
-
 public class Usuario {
     private String Nombre_Cliente;
     private String Apellido_Cliente;

@@ -7,19 +7,16 @@ import java.sql.SQLException;
 import java.sql.*;
 
 public class ConexionBD {
-   //creando atributos de la clase 
     String usuario;
     String url;
     String clave;
-    Connection conex;//la magia
-    //crear el constructor
+    Connection conex;
     public ConexionBD(){
         usuario = "root";
         url="jdbc:mysql://localhost:3306/coches_coches";
         clave="";
         conex =null;
-        
-        
+          
     }
     public void hacerConexion() throws SQLException{
         try{
